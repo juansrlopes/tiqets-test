@@ -1,0 +1,48 @@
+.result-card {
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid #D6D8DC;
+    background-color: #FFFFFF;
+}
+.result-card .image img{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: auto;
+}
+.result-card .description {
+    margin-left: 16px;
+    color:#323C52;
+    padding: 16px;
+    position: relative;
+}
+.result-card .description .title{
+    font-size: 22px;
+    font-weight: 500;
+}
+.result-card .description .summary{
+    font-size: 16px;
+    font-weight: 400;
+    overflow: hidden;
+    max-height: 40px;
+}
+.result-card .description .price{
+    font-size: 18px;
+    font-weight: 700;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* Responsive */
+@media only screen and (max-width: 500px) {
+    .result-card {
+        flex-direction: column;
+        padding: 16px;
+    }
+    .result-card .description .title,
+    .result-card .description .summary,
+    .result-card .description .price{
+        text-align: center;
+    }
+  }

@@ -1,0 +1,15 @@
+.input-search{
+    height: 50px;
+    border-radius: 4px;
+    border: 1px solid #D6D8DC;
+    outline-color: #018794;
+    width: 70%;
+    padding: 0 0 0 10px;
+    font-size: 16px;
+    color: #323C52;
+}
+.input-search::placeholder,
+.input-search::-webkit-input-placeholder,
+.input-search:-ms-input-placeholder{
+    color: #ADB1BA;
+}

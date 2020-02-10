@@ -1,12 +1,63 @@
-import React from 'react';
+import React from "react";
+import { fetchSearchResults } from "../api/search";
+import Button from "./layout/button/Button";
+import Input from "./layout/input/Input";
+import ResultCard from "../components/layout/result-card/ResultCard";
+import "./Search.css";
 
-/* Feel free to make this a functional component if you consider it necessary */
 class Search extends React.Component {
+  state = {
+    searchQuery: "",
+    emptySearch: false,
+    searchResultsDataItems: []
+  };
+  onFormSubmit = async e => {
+    e.preventDefault();
+    const { searchQuery } = this.state;
+    const searchResultsData = await fetchSearchResults(searchQuery);
+    if (searchQuery !== "" && searchResultsData.length > 0) {
+      this.setState({
+        searchResultsDataItems: searchResultsData,
+        emptySearch: false
+      });
+    } else if (searchQuery === "" || searchResultsData.length === 0) {
+      this.setState({
+        emptySearch: true
+      });
+    }
+  };
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
   render() {
+    const { searchQuery, searchResultsDataItems, emptySearch } = this.state;
     return (
-      <div>
-        Edit <code>src/components/Search.js</code>
-      </div>
+      <>
+        <form onSubmit={this.onFormSubmit}>
+          <Input
+            placeholder="What are you looking for?"
+            name="searchQuery"
+            value={searchQuery}
+            onChange={this.onChange}
+          />
+          <Button buttonText="Search" onButtonClick={this.onFormSubmit} />
+        </form>
+        <div className="results-wrapper">
+          {emptySearch ? (
+            <strong>No results found, please try again...</strong>
+          ) : (
+            <div className="results-container">
+              {searchResultsDataItems.map(resultItem => {
+                return (
+                  <ResultCard resultItemData={resultItem} key={resultItem.id} />
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </>
     );
   }
 }
