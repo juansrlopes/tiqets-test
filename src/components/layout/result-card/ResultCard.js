@@ -5,7 +5,11 @@ import "./ResultCard.css";
 const ResultCard = props => {
   const { resultItemData } = props;
   return (
-    <a href={resultItemData.productUrl} target="_blank">
+    <a
+      href={resultItemData.productUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div className="result-card" key={resultItemData.id}>
         <div className="card-content image">
           <img src={resultItemData.image} alt="Result alt" />
