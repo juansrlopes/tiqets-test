@@ -11,10 +11,12 @@ class Search extends React.Component {
     emptySearch: false,
     searchResultsDataItems: []
   };
+  // On form submit get data from the imported fetchSearchResults function
   onFormSubmit = async e => {
     e.preventDefault();
     const { searchQuery } = this.state;
     const searchResultsData = await fetchSearchResults(searchQuery);
+    // Checking if the query is empty and the data has content
     if (searchQuery !== "" && searchResultsData.length > 0) {
       this.setState({
         searchResultsDataItems: searchResultsData,
@@ -26,6 +28,7 @@ class Search extends React.Component {
       });
     }
   };
+  // on change function to change the state of the input
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
